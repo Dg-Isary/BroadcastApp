@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
-
+    android:background="#FFFFFF"> 
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:text="节点\n设置"
             android:textColor="#5F6368"
             android:textSize="16sp"
-            app:backgroundTint="#FFFFFF"
+            app:backgroundTint="#F8F9FA"
             app:cornerRadius="24dp"
             app:elevation="4dp"
             app:strokeColor="#E0E0E0"
@@ -53,7 +53,7 @@
         android:id="@+id/settingsOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#80000000"
+        android:background="#99000000"
         android:clickable="true"
         android:focusable="true"
         android:elevation="10dp"
@@ -63,62 +63,96 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="24dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
+            android:layout_marginHorizontal="20dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="24dp"
             app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="24dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="24dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="校园节点配置"
-                        android:textColor="#202124"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="校园节点配置"
+                            android:textColor="#202124"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Connection Settings"
+                            android:textColor="#9AA0A6"
+                            android:textSize="12sp"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
 
-                    <ImageButton
-                        android:id="@+id/btnCloseSettings"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@android:drawable/ic_menu_close_clear_cancel"
-                        app:tint="#5F6368" />
+                        app:cardBackgroundColor="#F1F3F4"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
+                        <ImageButton
+                            android:id="@+id/btnCloseSettings"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@android:drawable/ic_menu_close_clear_cancel"
+                            app:tint="#5F6368" />
+                    </com.google.android.material.card.MaterialCardView>
                 </RelativeLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:hint="当前加载节点">
+                    
+                    <AutoCompleteTextView
+                        android:id="@+id/profileDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textColor="#1976D2"
+                        android:textStyle="bold" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="end"
                     android:orientation="horizontal">
-
-                    <Spinner
-                        android:id="@+id/profileSpinner"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSaveProfile"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="48dp"
-                        android:paddingHorizontal="4dp"
-                        android:text="保存"
+                        android:text="新增/覆盖预设"
                         android:textColor="#1976D2" />
 
                     <com.google.android.material.button.MaterialButton
@@ -126,9 +160,8 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="48dp"
-                        android:paddingHorizontal="4dp"
-                        android:text="删除"
+                        android:layout_marginStart="8dp"
+                        android:text="删除此预设"
                         android:textColor="#D32F2F" />
                 </LinearLayout>
 
@@ -136,14 +169,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:paddingTop="8dp">
+                    android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
                         android:hint="内网IP">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -159,6 +195,10 @@
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
                         android:hint="Web">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -174,6 +214,10 @@
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
                         android:hint="对讲">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -189,8 +233,12 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="16dp"
                     android:hint="管理员安全锁密码 (无密码留空)"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -204,11 +252,13 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/connectBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="20dp"
-                    android:text="认证连接与保存"
-                    app:cornerRadius="8dp"
-                    app:elevation="0dp" />
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:text="连接并应用"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="16dp"
+                    app:elevation="2dp" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
